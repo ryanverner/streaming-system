@@ -7,6 +7,3 @@ Usage (run as root in a screen/tmux session):
 
 (where user:password equal flumotion manager username/password)
 
-manager username/password can be found in:
-/usr/local/etc/flumotion/workers/default.xml
-
