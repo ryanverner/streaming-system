@@ -14,7 +14,7 @@ set -x
 set -e
 
 # Remove old /tmp/timvideos-static
-[ -d /tmp/timvideos-static ] && rm -r /tmp/timvideos-static
+rm -rf /tmp/timvideos-static
 
 # Add the groups required
 addgroup --system website
