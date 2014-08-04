@@ -25,6 +25,9 @@ sudo apt-get install --assume-yes build-essential autoconf autopoint libtool lib
 # Dependencies to run flumotion
 sudo apt-get install --assume-yes python-kiwi python-twisted.* ssl-cert
 
+# Fix permissions issue (/usr/local/var/* can be chmod 700)
+sudo chmod 755 /usr/local/var
+
 # Install the core flumotion
 (
   cd ../flumotion
@@ -63,3 +66,4 @@ sudo chown flumotion:flumotion /usr/local/etc/flumotion/default.pem
 
 # Give access to the firewire ports
 sudo adduser flumotion video
+

@@ -17,6 +17,7 @@ sudo apt-get install --assume-yes build-essential autoconf autopoint libtool lib
 # build and install
 (
   cd 
+  rm -fr gst-plugins-dvswitch
   git clone https://github.com/timvideos/gst-plugins-dvswitch.git
   cd gst-plugins-dvswitch
   git clean -f -x
