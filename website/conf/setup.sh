@@ -52,7 +52,7 @@ fi
 
 (
 if [ ! -d $BASEDIR/timvideos ]; then
-	as_website "cd $BASEDIR; git clone git://github.com/timvideos/streaming-system.git timvideos"
+	as_website "cd $BASEDIR; git clone git://github.com/ryanverner/streaming-system.git timvideos"
 else
 	chown website:website -R $BASEDIR/timvideos
 	as_website "cd $BASEDIR/timvideos; git fetch; git reset --hard $(git rev-parse --symbolic-full-name --abbrev-ref @{u})" || exit
