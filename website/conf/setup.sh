@@ -14,7 +14,7 @@ set -x
 set -e
 
 # Remove old /tmp/timvideos-static
-[ -d /tmp/timvideos-static ] && rm -r /tmp/timvideos-static
+rm -rf /tmp/timvideos-static
 
 # Add the groups required
 addgroup --system website
@@ -56,7 +56,7 @@ fi
 
 (
 if [ ! -d $BASEDIR/timvideos ]; then
-	as_website "cd $BASEDIR; git clone git://github.com/timvideos/streaming-system.git timvideos"
+	as_website "cd $BASEDIR; git clone git://github.com/ryanverner/streaming-system.git timvideos"
 else
 	chown website:website -R $BASEDIR/timvideos
 	as_website "cd $BASEDIR/timvideos; git fetch; git reset --hard $(git rev-parse --symbolic-full-name --abbrev-ref @{u})" || exit
@@ -79,6 +79,8 @@ if [ ! -f $BASEDIR/timvideos/website/private/settings.py ]; then
   else
     echo "No settings.py file found in either test or production directories."
     echo "Please create a settings.py file in $BASEDIR/timvideos/website/private/settings.py"
+    echo "This should contain production db settings (not sqlite!)."
+    echo "Once this is done, run this script again." 
     exit 1
   fi
 fi

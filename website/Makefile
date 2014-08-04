@@ -28,7 +28,7 @@ clean:
 	git clean -f -d
 
 bin/activate:
-	virtualenv --no-site-packages .
+	virtualenv --always-copy --no-site-packages .
 	-rm distribute*.tar.gz
 
 freeze:
@@ -56,6 +56,7 @@ frontend/data.py: eventfeed2internal.py pycon2internal.py
 prepare-serve: install
 	$(ACTIVATE) && python manage.py collectstatic --noinput
 #	$(ACTIVATE) && python manage.py syncdb
+#	$(ACTIVATE) && python manage.py migrate
 
 lint: install
 	@# R0904 - Disable "Too many public methods" warning
@@ -84,8 +85,13 @@ config:
 upload:
 	$(ACTIVATE) && git-cl upload
 
-serve: prepare-serve install
+initdb:
 	$(ACTIVATE) && python manage.py syncdb
+	$(ACTIVATE) && python manage.py migrate
+
+serve: prepare-serve install
 	$(ACTIVATE) && python manage.py runserver ${ARGS} 
+
+testserve: prepare-serve install initdb serve
 
 .PHONY : lint upload deploy serve clean config prepare-serve

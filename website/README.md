@@ -39,7 +39,7 @@ sudo pip install virtualenv
 Running a test server
 =====================
 
-Run ``make serve``; this will configure a virtualenv, download and install
+Run ``make testserve``; this will configure a virtualenv, download and install
 dependencies (inside the virtualenv; your system will not be touched); and a
 test server will be started.
 
@@ -145,13 +145,23 @@ Production Deployment
 
     This makes it relatively easy to revert to an earlier version of the code.
 
+ *  The script will ask for a production settings.py to be created using
+    non-sqlite details.  Populate this with a real DB, such as PostgreSQL.
+
+ *  On a new installation, you will need to initialise the database (this is
+    not done by setup.sh as it can be used for upgrades, too).  You can do this
+    by running ```make initdb```.
+
+ *  On an existing installation you may need to migrate any schema changes.
+    You can do this by running ```bin/python manage.py migrate```.
+
  *  The app runs inside [Green Unicorn][], and is started by
     [upstart][]. Take a look at conf/init.conf
 
  *  The app uses [nginx][] as a frontend, and to serve static files. Only a few
     changes from the default config are needed to accomplish this.
 
-    Take a look at conf/nginx.conf
+    Take a look at conf/nginx.conf (this needs to be modified).
 
   [deploy key]: http://help.github.com/deploy-keys/
   [Green Unicorn]: http://gunicorn.org/
