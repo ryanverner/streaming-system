@@ -13,6 +13,9 @@ fi
 set -x
 set -e
 
+# Remove old /tmp/timvideos-static
+[ -d /tmp/timvideos-static ] && rm -r /tmp/timvideos-static
+
 # Add the groups required
 addgroup --system website
 addgroup --system website-run
@@ -29,8 +32,9 @@ adduser $USER website-run
 # Get python dependencies
 apt-get -y install python-pip python-setuptools python-virtualenv
 
-# Set up the website directory
+# Set up the website directory and set current directory test deployment is running in
 BASEDIR=/home/website
+CURDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Set up upstart config file
 ln -sf $BASEDIR/current/website/conf/init.conf /etc/init/website.conf
@@ -69,8 +73,14 @@ export VERSION=$(date +%Y%m%d-%H%M%S)-$(git describe --tags --long --always)
 cd ..
 
 if [ ! -f $BASEDIR/timvideos/website/private/settings.py ]; then
-  echo "Please create a settings.py file in $BASEDIR/timvideos/website/private/settings.py"
-  exit 1
+  if [ -f $CURDIR/../private/settings.py ]; then
+    echo "Copying settings.py from $CURDIR to $BASEDIR..."
+    cp $CURDIR/../private/settings.py $BASEDIR/timvideos/website/private/settings.py
+  else
+    echo "No settings.py file found in either current/test or production directories."
+    echo "Please create a settings.py file in $BASEDIR/timvideos/website/private/settings.py"
+    exit 1
+  fi
 fi
 
 VERSIONDIR=$BASEDIR/timvideos-$VERSION
@@ -87,6 +97,16 @@ as_website ln -s timvideos-$VERSION current
 
 # Need to get config-private.json
 # Need to get settings-private.py
+
+# Copy over config.private.json from previous installation
+if [ ! -f $BASEDIR/timvideos/config.private.json ]; then
+  if [ -f $CURDIR/../../config.private.json ]; then
+    echo "Copying config.private.json from $CURDIR to $BASEDIR..."
+    cp $CURDIR/../../config.private.json $BASEDIR/timvideos/config.private.json 
+  else
+    echo "No config.private.json file found"
+  fi
+fi 
 
 # Make upstart/gunicorn reload config file
 chmod 644 $VERSIONDIR/website/conf/init.conf
