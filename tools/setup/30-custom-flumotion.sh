@@ -67,3 +67,6 @@ sudo chown flumotion:flumotion /usr/local/etc/flumotion/default.pem
 # Give access to the firewire ports
 sudo adduser flumotion video
 
+# Give access to audio (non-dvswitch ALSA sources)
+sudo adduser flumotion audio
+
