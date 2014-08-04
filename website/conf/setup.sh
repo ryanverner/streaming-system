@@ -77,7 +77,7 @@ if [ ! -f $BASEDIR/timvideos/website/private/settings.py ]; then
     echo "Copying settings.py from $CURDIR to $BASEDIR..."
     cp $CURDIR/../private/settings.py $BASEDIR/timvideos/website/private/settings.py
   else
-    echo "No settings.py file found in either current/test or production directories."
+    echo "No settings.py file found in either test or production directories."
     echo "Please create a settings.py file in $BASEDIR/timvideos/website/private/settings.py"
     exit 1
   fi
@@ -95,16 +95,13 @@ cp -R /tmp/timvideos-static $VERSIONDIR/website/static
 as_website rm current || true
 as_website ln -s timvideos-$VERSION current
 
-# Need to get config-private.json
-# Need to get settings-private.py
-
 # Copy over config.private.json from previous installation
 if [ ! -f $BASEDIR/timvideos/config.private.json ]; then
   if [ -f $CURDIR/../../config.private.json ]; then
     echo "Copying config.private.json from $CURDIR to $BASEDIR..."
     cp $CURDIR/../../config.private.json $BASEDIR/timvideos/config.private.json 
   else
-    echo "No config.private.json file found"
+    echo "No config.private.json file found!"
   fi
 fi 
 
