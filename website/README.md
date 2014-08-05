@@ -51,7 +51,7 @@ a username and password for an admin account.
 This test server should not be used in production (see relevant section below).
 
 Requests are served at http://127.0.0.1:8000 by default.  If you need to change
-the listening IP or port, try ```ARGS="192.168.1.1:8000" make serve``` where ARGS
+the listening IP or port, try ```ARGS="192.168.1.1:8000" make testserve``` where ARGS
 represents your desired listening IP and port.
 
 This test server **should NOT be used in production** (see relevant section below).
@@ -84,7 +84,7 @@ This keeps on going.
 
 Open http://127.0.0.1:8000/example to view the page
 
-Note: DO NOT run ``make serve`` as root. If you do, virtualenv folders won't
+Note: DO NOT run ``make testserve`` as root. If you do, virtualenv folders won't
 have write permissions, so the tracker won't be able to write to sqlite
 database.
 
