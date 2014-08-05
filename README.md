@@ -20,6 +20,12 @@ viewing sides.
 It has been used with conferences like PyCon US and Linux.conf.au and at user
 groups like Sydney Linux User Group and Sydney Python User Group.
 
+# Important information
+
+```config.private.json``` is referenced by many parts of the Tim Videos system.
+It contains passwords, rooms/stream metadata, and other important information. 
+Please ensure this is populated early (base it from ```config.json.example```.
+
 # Parts
 
  * **website** - The actual website people end up seeing/going too. Uses
@@ -39,6 +45,9 @@ groups like Sydney Linux User Group and Sydney Python User Group.
     * **flumotion-config** - Example flumotion configuration files and some
       tools to push the configurations out to systems. Useful for conferences
       where you are managing a lot of encoders/collectors.
+
+      There is a script in here called ```pusher/pushconfig.py``` which should be used
+      to generate the correct Flumotion configuration files for encoders/collectors.      
 
     * **flumotion-extra** - Website controller of flumotion (replaces the GTK
       tool).

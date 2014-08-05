@@ -1,4 +1,4 @@
-This command is used to register a flumotion encoder server onto the streamti.me frontend system.
+This script is used to register a flumotion encoder server onto the timvideos frontend system.
 This should be ran on the encoder machines.
 
 Usage (run as root in a screen/tmux session):
