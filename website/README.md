@@ -140,12 +140,21 @@ Production Deployment
     be persisted across deployments, you may have to take care of this in your
     deploy script.
 
- *  To do the deployment, I use the ``setup.sh`` script in conf directory. It
-    takes a copy of the current code in ``~website/timvideos`` and puts it in
-    ``~website/$VERSION-$DATE-$TIME`` directory and then links
-    ``~website/current`` to that.
+ *  **To deploy on an Ubuntu 12.04 LTS system**, run the  ``setup.sh`` script in the conf/
+    directory.  If an existing deploy doesn't exist, it will create the relevant
+    groups, users, install the correct packages, copy in some configuration files for
+    relevant daemons (nginx, etc) and git pull the project into ~website/timvideos.
+    **Please look at the script first if deploying on a system already used for other
+    things as this assumes a fairly fresh install.**.
+
+    If already deployed into ~website/timvideos, it will update from git.
+
+    The script will then copy intallation over into ~website/timvideos-$VERSION-DATE-TIME and
+    then links ~website/current to that. 
 
     This makes it relatively easy to revert to an earlier version of the code.
+  
+    The script may work on other distros, but has only been tested on Ubuntu 12.04 LTS.
 
  *  The script will ask for a production settings.py to be created using
     non-sqlite details.  Populate this with a real DB, such as PostgreSQL.
