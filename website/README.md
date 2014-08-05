@@ -45,7 +45,7 @@ test server will be started.
 
 If you recieve a "bin/activate" error, try ```make distclean``` and try again. 
 
-If this is your first time running ``make serve`` you'll be prompted to provide
+If this is your first time running ``make testserve`` you'll be prompted to provide
 a username and password for an admin account.
 
 This test server should not be used in production (see relevant section below).
