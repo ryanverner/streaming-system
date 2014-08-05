@@ -149,7 +149,7 @@ Production Deployment
 
     If already deployed into ~website/timvideos, it will update from git.
 
-    The script will then copy intallation over into ~website/timvideos-$VERSION-DATE-TIME and
+    The script will then copy installation over into ~website/timvideos-$VERSION-DATE-TIME and
     then links ~website/current to that. 
 
     This makes it relatively easy to revert to an earlier version of the code.
@@ -178,3 +178,13 @@ Production Deployment
   [Green Unicorn]: http://gunicorn.org/
   [upstart]: http://upstart.ubuntu.com/
   [nginx]: http://nginx.org/en/ "nginx"
+
+
+
+
+Important information
+=====================
+
+```config.private.json``` is referenced by many parts of the Tim Videos system.
+It contains passwords, rooms/stream metadata, and other important information.
+Please ensure this is populated early (base it from ```config.json.example```.

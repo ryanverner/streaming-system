@@ -11,7 +11,7 @@ For how the streaming system overall looks at the following diagram;
 ![Streaming System overall Diagram](https://docs.google.com/drawings/d/1ZN5uqd-fo62e0IZSzuOSo6YadRY_n7umkUThmqckACA/pub?w=960&h=720)
 
 
-## What is Tim Video's?
+# What is Tim Video's?
 
 Tim Video's is a collection of tools for live streaming conferences and user
 groups. It includes both software and hardware for both the recording and
